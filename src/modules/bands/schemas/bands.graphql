@@ -1,8 +1,3 @@
-type Query {
-  bands: [Band]
-  band(id: ID!): Band
-}
-
 type Band {
   id: ID!
   name: String
@@ -16,4 +11,9 @@ type Member {
   artist: String
   instrument: String
   years: [String]
+}
+
+type Query {
+  bands: [Band]
+  band(id: ID!): Band
 }
