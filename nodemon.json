@@ -1,0 +1,7 @@
+{
+    "verbose": false,
+    "ignore": ["node_modules"],
+    "watch": ["./"],
+    "exec": "npx ts-node",
+    "ext": "ts, js"
+  }

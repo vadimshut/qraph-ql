@@ -1,0 +1,45 @@
+{
+  "name": "qraph-ql",
+  "version": "1.0.0",
+  "description": "JS TS GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "rimraf dist && tsc && node dist/index.js",
+    "start:dev": "nodemon ./src/index.ts",
+    "start:warch": "nodemon -x ts-node ./src/index.ts",
+    "prettier": "npx prettier --write .",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vadimshut/qraph-ql.git"
+  },
+  "keywords": [
+    "ts",
+    "js",
+    "qraphQl"
+  ],
+  "author": "Vadim Shut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vadimshut/qraph-ql/issues"
+  },
+  "homepage": "https://github.com/vadimshut/qraph-ql#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
