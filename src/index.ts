@@ -1,59 +1,34 @@
 import { loadFiles } from '@graphql-tools/load-files';
-import { ApolloServerPluginLandingPageGraphQLPlayground, gql } from 'apollo-server-core';
+import { ApolloServerPluginLandingPageGraphQLPlayground, AuthenticationError, gql } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import http from 'http';
 import { config } from 'dotenv';
-// import { resolvers } from "./modules/artists/resolvers/artists.resolver";
-// import { artistsService } from "./modules/artists/services/artists.service";
 
 import { ALTERNATIVE_PORT } from './constants';
+import resolvers from './modules/resolvers';
+import services from './modules/services';
 
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-];
-
-const typeDefs = gql`
-type Book {
-  title: String
-  author: String
-}
-type Query {
-  books: [Book]
-}
-
-`
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
-
+import types from './modules/typesDefs'
 
 config();
 const PORT = Number(process.env['PORT']) || ALTERNATIVE_PORT;
-
+const typeDefs = types
 async function startApolloServer() {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    
-    // dataSources: () => ({
-      //   artistsService,
-    // }),
+    dataSources: () => services,
     csrfPrevention: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
+    context: ({ req }) => {
+      const token = req.headers.authorization;
+      if (!token) throw new AuthenticationError("Eror. You must be logged in applicatopn");
+      return { token };
+    },
   });
   await server.start();
   server.applyMiddleware({ app });
