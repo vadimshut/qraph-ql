@@ -24,9 +24,8 @@ async function startApolloServer() {
     cache: 'bounded',
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
     context: ({ req }) => {
-      const token = req.headers.authorization;
-      // if (!token) throw new AuthenticationError("Error! User must be logged in services");
-      return { token };
+      const authToken = req.headers.authorization;
+      return { authToken };
     },
   });
   await server.start();

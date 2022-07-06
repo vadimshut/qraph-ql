@@ -12,8 +12,25 @@ export default gql`
     image: String
   }
 
+  input InputAlbum {
+    name: String!
+    released: Int
+    artistsIds: [ID]
+    bandsIds: [ID]
+    tracksIds: [ID]
+    genresIds: [ID]
+    image: String
+  }
+
   type Query {
-    albums: [Album]
+    albums(pagination: Pagination): [Album]
+    album(id: ID!): Album
+  }
+
+  type Mutation {
+    createAlbum(input: InputAlbum!): Album
+    updateAlbum(id: ID!, input: InputAlbum!): Album
+    deleteAlbum(id: ID!): deleteResponse
   }
 `;
 
