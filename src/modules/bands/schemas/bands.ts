@@ -1,8 +1,9 @@
 import { gql } from 'apollo-server-core';
 
 export default gql`
+
   type Band {
-    id: ID!
+    id: ID
     name: String
     origin: String
     members: [Member]
@@ -11,7 +12,24 @@ export default gql`
   }
 
   type Member {
-    artist: String
+    id: ID
+    firstName: String
+    secondName: String
+    middleName: String
+    instrument: String
+    years: [String]
+  }
+
+  input BandInput {
+    name: String!
+    origin: String
+    members: [InputMember]
+    website: String
+    genres: [ID]
+  }
+
+  input MemberInput {
+    artist: ID!
     instrument: String
     years: [String]
   }
@@ -21,3 +39,10 @@ export default gql`
     band(id: ID!): Band
   }
 `;
+
+
+// type Mutation {
+//   createBand(input: InputBand!): Band
+//   updateBand(id: ID!, input: InputBand!): Band
+//   deleteBand(id: ID!): deleteResponse
+// }
