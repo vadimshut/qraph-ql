@@ -13,7 +13,8 @@ export default gql`
   }
 
   type Query {
-    albums: [Artist]
-    album(id: ID!): Artist
+    albums: [Album]
   }
 `;
+
+// album(id: ID!): Album

@@ -1,46 +1,35 @@
-import { gql } from 'apollo-server-core';
+import { gql } from 'apollo-server-express';
 
 export default gql`
-  type User {
-    id: ID!
-    firstName: String
-    secondName: String
-    password: String
-    email: String!
-  }
-
   type JWT {
     jwt: String
   }
 
+  type User {
+    id: ID!
+    firstName: String!
+    secondName: String!
+    password: String!
+    email: String!
+  }
+
+  input UserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+    favouriteArtistIds: [String]
+    favouriteSongsIds: [String]
+    favouriteBandsIds: [String]
+    favouriteGenresIds: [String]
+  }
+
   type Query {
+    login(email: String!, password: String!): JWT
     user(id: ID!): User
-    login(email:String, password:String): JWT
-    register(firstName:String!, lastName:String!, password:String!, email:String!, favouriteArtistIds:[String], favouriteSongsIds:[String], favouriteBandsIds:[String], favouriteGenresIds:[String]): User
-    jwt: JWT
-   
+  }
+
+  type Mutation {
+    registration(input: UserInput): User
   }
 `;
-
-
-
-// export default gql`
-//   type User {
-//     id: ID!
-//     firstName: String
-//     secondName: String
-//     password: String
-//     email: String!
-//   }
-
-  // type JWT {
-  //   jwt: String
-  // }
-
-//   type Query {
-//     user(id: ID!): User
-//     login(email:String, password:String): JWT
-//     register(firstName:String!, lastName:String!, password:String!, email:String!, favouriteArtistIds:[String], favouriteSongsIds:[String], favouriteBandsIds:[String], favouriteGenresIds:[String])
-//     jwt: JWT
-//   }
-// `;

@@ -1,10 +1,3 @@
+import usersResolver from './users/resolvers/users.resolver';
 
-
-
-
-export default {  };
-// artistsResolver,
-// bandsResolver,
-// genresResolver,
-// tracksResolver,
-// albumsResolver,
+export default [usersResolver];

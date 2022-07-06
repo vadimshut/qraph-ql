@@ -1,7 +1,5 @@
+import { usersService } from './users/services/users.service';
+
 export default {
-  // albumsService,
-  // artistsService,
-  // bandsService,
-  // genresService,
-  // tracksService,
+  usersService,
 };
