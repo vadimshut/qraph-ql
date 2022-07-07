@@ -62,6 +62,11 @@ class GenresService extends RESTDataSource {
       },
     );
   }
+
+  async getGenresByIds(arrayIds: string[]) {
+    const res = await Promise.allSettled(arrayIds.map((id: string) => this.getGenre(id)));
+    return res.map((item) => (item as unknown as PromiseFulfilledResult<any>).value);
+  }
 }
 
 export const genresService = new GenresService();
