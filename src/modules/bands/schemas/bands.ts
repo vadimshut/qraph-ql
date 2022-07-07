@@ -30,7 +30,7 @@ export default gql`
     origin: String
     members: [MemberInput]
     website: String
-    genres: [ID]
+    genresIds: [ID]
   }
 
   type Query {
@@ -39,8 +39,8 @@ export default gql`
   }
 
   type Mutation {
-  createBand(input: BandInput!): Band
-  updateBand(id: ID!, input: BandInput!): Band
-  deleteBand(id: ID!): DELETE
-}
+    createBand(input: BandInput!): Band
+    updateBand(id: ID!, input: BandInput!): Band
+    deleteBand(id: ID!): DELETE
+  }
 `;

@@ -1,20 +1,36 @@
 import { IArtist } from '../../../interfaces/IArtists';
+import { IBandInput } from '../../../interfaces/IBandInput';
 import { IMember } from '../../../interfaces/IMemder';
 import { IPagination } from '../../../interfaces/IPagination';
 
 const resolvers = {
   Query: {
     bands: async (_: any, { limit = 5, offset = 0 }: IPagination, { dataSources }: { dataSources: any }) => {
-        console.log(limit, offset);
-        
       const response = await dataSources.bandsService.getArtefacts(limit, offset);
-      console.log(response);
-      
       return response;
     },
 
     band: async (_: any, { id }: { id: string }, { dataSources }: { dataSources: any }) => {
       const response = await dataSources.bandsService.getArtefact(id);
+      return response;
+    },
+  },
+
+  Mutation: {
+    createBand: async (_: any, { input }: { input: IBandInput }, { dataSources }: { dataSources: any }) => {
+      const response = await dataSources.bandsService.createArtefact(input);
+      return response;
+    },
+    updateBand: async (
+      _: any,
+      { id, input }: { id: string; input: IBandInput },
+      { dataSources }: { dataSources: any },
+    ) => {
+      const response = await dataSources.bandsService.updateArtefact(id, input);
+      return response;
+    },
+    deleteBand: async (_: any, { id }: { id: string }, { dataSources }: { dataSources: any }) => {
+      const response = await dataSources.bandsService.deleteArtefact(id);
       return response;
     },
   },
