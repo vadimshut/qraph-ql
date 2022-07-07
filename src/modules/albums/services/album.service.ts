@@ -1,15 +1,5 @@
-import { RESTDataSource } from 'apollo-datasource-rest';
+import { CrudService } from '../../crudService';
+import { config } from 'dotenv';
+config();
 
-class AlbumsService extends RESTDataSource {
-  constructor() {
-    super();
-    this.baseURL = process.env['ALBUMS_URL'];
-  }
-
-  async getAlbums() {
-    const res = await this.get('/');
-    console.log(res);
-  }
-}
-
-export const albumsService = new AlbumsService();
+export const albumsService = new CrudService(process.env['ALBUMS_URL'] as string);

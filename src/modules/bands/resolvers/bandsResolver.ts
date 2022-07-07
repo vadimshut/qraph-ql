@@ -1,7 +1,6 @@
 // import { IMember } from "../../../interfaces/IMemder";
 // import { IPagination } from "../../../interfaces/IPagination";
 
-
 // const resolvers = {
 //     Query: {
 //         bands: async (_: any, { limit = 5, offset = 0 }: IPagination, { dataSources }: { dataSources: any }) => {

@@ -3,8 +3,8 @@ import { IPagination } from '../../../interfaces/IPagination';
 
 const resolvers = {
   Query: {
-    genres: async (_: any, { limit, offset }: IPagination, { dataSources }: { dataSources: any }) => {   
-      const response = await dataSources.genresService.getArtefacts(limit, offset);      
+    genres: async (_: any, { limit, offset }: IPagination, { dataSources }: { dataSources: any }) => {
+      const response = await dataSources.genresService.getArtefacts(limit, offset);
       return response;
     },
 
@@ -30,7 +30,7 @@ const resolvers = {
   },
   Genre: {
     id: ({ _id }: { _id: string }) => _id,
-  }
+  },
 };
 
 export default resolvers;
