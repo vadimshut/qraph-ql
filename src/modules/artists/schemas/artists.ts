@@ -13,8 +13,25 @@ export default gql`
     instruments: String
   }
 
+  input ArtistInput {
+    firstName: String!
+    secondName: String!
+    middleName: String
+    birthDate: String
+    birthPlace: String
+    country: String!
+    bands: [ID]
+    instruments: [String]
+  }
+
   type Query {
-    artists: [Artist]
+    artists(limit: Int = 5, offset: Int = 0): [Artist]
     artist(id: ID!): Artist
+  }
+
+  type Mutation {
+    createArtist(input: ArtistInput!): Artist
+    updateArtist(id: ID!, input: ArtistInput!): Artist
+    deleteArtist(id: ID!): DELETE
   }
 `;
