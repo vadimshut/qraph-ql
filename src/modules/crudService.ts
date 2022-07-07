@@ -1,6 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-export class crudService extends RESTDataSource {
+export class CrudService extends RESTDataSource {
   constructor(serviceUrl: string) {
     super();
     this.baseURL = serviceUrl;
