@@ -1,3 +1,4 @@
+import { IArtist } from '../../../interfaces/IArtists';
 import { IMember } from '../../../interfaces/IMemder';
 import { IPagination } from '../../../interfaces/IPagination';
 
@@ -20,28 +21,24 @@ const resolvers = {
       const response = await dataSources.genresService.getArtefactsByIdsList(genresIds);
       return response;
     },
-    // members: (
-    //     { members }: { members: IMember[] },
-    //     _: any,
-    //     { dataSources }: { dataSources: any }
-    //   ) => {
-    //     Promise.allSettled(
-    //         members.map(({ artist }: { artist: string }) =>
-    //           dataSources.artistsService.get(artist)
-    //         )
-    //       ).then((res) =>
-    //         res.map((item, index) => {
-    //           const { value } = item as unknown as PromiseFulfilledResult<Artist>;
-    //           return {
-    //             firstName: value.firstName,
-    //             secondName: value.secondName,
-    //             middleName: value.middleName,
-    //             instrument: members[index].instrument,
-    //             years: members[index].years,
-    //           };
-    //         })
-    //       ),
-    //   }
+    members: ({ members }: { members: IMember[] }, _: any, { dataSources }: { dataSources: any }) => {
+      Promise.allSettled(
+        members.map(({ artist }: { artist: string }) =>
+          dataSources.artistsService.get(artist).then((artists: IArtist[]) =>
+            artists.map((artist, index) => {
+              const { value } = artist as unknown as PromiseFulfilledResult<IArtist>;
+              return {
+                firstName: value.firstName,
+                secondName: value.secondName,
+                middleName: value.middleName,
+                instrument: (members[index] as IMember).instrument,
+                years: (members[index] as IMember).years,
+              };
+            }),
+          ),
+        ),
+      );
+    },
   },
 };
 
