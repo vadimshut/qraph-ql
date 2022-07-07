@@ -5,12 +5,16 @@ import { IPagination } from '../../../interfaces/IPagination';
 const resolvers = {
   Query: {
     bands: async (_: any, { limit = 5, offset = 0 }: IPagination, { dataSources }: { dataSources: any }) => {
-      const response = await dataSources.getArtefacts(limit, offset);
+        console.log(limit, offset);
+        
+      const response = await dataSources.bandsService.getArtefacts(limit, offset);
+      console.log(response);
+      
       return response;
     },
 
     band: async (_: any, { id }: { id: string }, { dataSources }: { dataSources: any }) => {
-      const response = await dataSources.getArtefact(id);
+      const response = await dataSources.bandsService.getArtefact(id);
       return response;
     },
   },

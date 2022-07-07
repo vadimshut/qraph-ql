@@ -37,11 +37,10 @@ export default gql`
     bands(limit: Int = 5, offset: Int = 0): [Band]
     band(id: ID!): Band
   }
-`;
-// band(id: ID!): Band
 
-// type Mutation {
-//   createBand(input: InputBand!): Band
-//   updateBand(id: ID!, input: InputBand!): Band
-//   deleteBand(id: ID!): deleteResponse
-// }
+  type Mutation {
+  createBand(input: BandInput!): Band
+  updateBand(id: ID!, input: BandInput!): Band
+  deleteBand(id: ID!): DELETE
+}
+`;
