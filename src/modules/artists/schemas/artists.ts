@@ -20,7 +20,7 @@ export default gql`
     birthDate: String
     birthPlace: String
     country: String!
-    bands: [ID]
+    bandsIds: [ID]
     instruments: [String]
   }
 
