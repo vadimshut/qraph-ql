@@ -32,5 +32,4 @@ export default gql`
     updateTrack(id: ID!, input: TrackInput!): Track
     deleteTrack(id: ID!): DELETE
   }
-
 `;

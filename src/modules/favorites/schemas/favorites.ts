@@ -9,4 +9,19 @@ export default gql`
     artists: [Artist]
     tracks: [Track]
   }
+
+  type Query {
+    favourites: Favourites
+  }
+
+  type Mutation {
+    addTrackToFavourites(id: ID!): Favourites
+    addBandToFavourites(id: ID!): Favourites
+    addArtistToFavourites(id: ID!): Favourites
+    addGenreToFavourites(id: ID!): Favourites
+    deleteTrackFromFavourites(id: ID!): Favourites
+    deleteBandFromFavourites(id: ID!): Favourites
+    deleteArtistFromFavourites(id: ID!): Favourites
+    deleteGenreFromFavourites(id: ID!): Favourites
+  }
 `;
