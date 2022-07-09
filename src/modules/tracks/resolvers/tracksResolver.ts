@@ -1,4 +1,5 @@
 import { IPagination } from '../../../interfaces/IPagination';
+import { ITrackInput } from '../../../interfaces/ITrackInput';
 
 const resolvers = {
   Query: {
@@ -12,6 +13,25 @@ const resolvers = {
       return response;
     },
   },
+  Mutation: {
+    createTrack: async (_: any, { input }: { input: ITrackInput }, { dataSources }: { dataSources: any }) => {
+      const result = dataSources.tracksService.createArtefact(input);
+      return result;
+    },
+    updateTrack: async (
+      _: any,
+      { id, input }: { id: string; input: ITrackInput },
+      { dataSources }: { dataSources: any },
+    ) => {
+      const result = dataSources.tracksService.updateArtefact(id, input);
+      return result;
+    },
+    deleteTrack: async (_: any, { id }: { id: string }, { dataSources }: { dataSources: any }) => {
+      const result = dataSources.tracksService.deleteArtefact(id);
+      return result;
+    },
+  },
+
   Track: {
     id: ({ _id }: { _id: string }) => _id,
     bands: async ({ bandsIds }: { bandsIds: string[] }, _: any, { dataSources }: { dataSources: any }) => {

@@ -40,12 +40,8 @@ const resolvers = {
       const response = await dataSources.artistsService.getArtefactsByIdsList(artistsIds);
       return response;
     },
-    tracks: async (
-      { tracksIds }: { tracksIds: string[] },
-      _: any,
-      { dataSources }: { dataSources: any }
-    ) => {
-      const response = await dataSources.tracksService.getArtefactsByIdsList(tracksIds)
+    tracks: async ({ tracksIds }: { tracksIds: string[] }, _: any, { dataSources }: { dataSources: any }) => {
+      const response = await dataSources.tracksService.getArtefactsByIdsList(tracksIds);
       return response;
     },
     genres: async ({ genresIds }: { genresIds: string[] }, _: any, { dataSources }: { dataSources: any }) => {

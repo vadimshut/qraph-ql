@@ -14,7 +14,7 @@ export default gql`
 
   input TrackInput {
     title: String!
-    album: InputAlbum
+    album: AlbumInput
     artists: [ID]
     bands: [ID]
     duration: Int
@@ -26,4 +26,11 @@ export default gql`
     tracks(limit: Int = 5, offset: Int = 0): [Track]
     track(id: ID!): Track
   }
+
+  type Mutation {
+    createTrack(input: TrackInput!): Track
+    updateTrack(id: ID!, input: TrackInput!): Track
+    deleteTrack(id: ID!): DELETE
+  }
+
 `;
