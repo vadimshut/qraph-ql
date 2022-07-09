@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-core';
 
 export default gql`
   type Album {
-    id: ID!
+    id: ID
     name: String
     released: Int
     artists: [Artist]
@@ -12,7 +12,7 @@ export default gql`
     image: String
   }
 
-  input InputAlbum {
+  input AlbumInput {
     name: String!
     released: Int
     artistsIds: [ID]
@@ -23,15 +23,13 @@ export default gql`
   }
 
   type Query {
-    albums(pagination: Pagination): [Album]
+    albums(limit: Int = 5, offset: Int = 0): [Album]
     album(id: ID!): Album
   }
 
   type Mutation {
-    createAlbum(input: InputAlbum!): Album
-    updateAlbum(id: ID!, input: InputAlbum!): Album
-    deleteAlbum(id: ID!): deleteResponse
+    createAlbum(input: AlbumInput!): Album
+    updateAlbum(id: ID!, input: AlbumInput!): Album
+    deleteAlbum(id: ID!): DELETE
   }
 `;
-
-// album(id: ID!): Album

@@ -23,14 +23,14 @@ const resolvers = {
       return response;
     },
 
-    genres: async (
-        { genresIds }: { genresIds: string[] },
-        _: any,
-        { dataSources }: { dataSources: any }
-      ) => {
-        const response = await dataSources.genresService.getArtefactsByIdsList(genresIds)
-        return response;  
-    }
+    genres: async ({ genresIds }: { genresIds: string[] }, _: any, { dataSources }: { dataSources: any }) => {
+      const response = await dataSources.genresService.getArtefactsByIdsList(genresIds);
+      return response;
+    },
+    album: async ({ albumId }: any, _: any, { dataSources }: any) => {
+      const response = await dataSources.albumsService.getArtefact(albumId);
+      return response;
+    },
   },
 };
 
