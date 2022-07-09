@@ -11,7 +11,7 @@ export default gql`
   }
 
   type Query {
-    favourites: Favourites
+    favourites(limit: Int = 5, offset: Int = 0): Favourites
   }
 
   type Mutation {

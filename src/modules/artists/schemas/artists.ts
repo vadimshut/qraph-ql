@@ -10,7 +10,7 @@ export default gql`
     birthPlace: String
     country: String
     bands: [Band]
-    instruments: String
+    instruments: [String]
   }
 
   input ArtistInput {

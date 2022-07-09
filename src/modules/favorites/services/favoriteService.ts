@@ -9,16 +9,16 @@ class FavoriteService extends RESTDataSource {
     this.baseURL = process.env['FAVORITES_URL'];
   }
 
-  async getFavorites() {
+  async getFavorites(limit: number, offset: number) {
     return await this.get(
-      '',
-      {},
+      "",
+      {limit, offset},
       {
         headers: {
           authorization: this.context.authToken,
         },
       },
-    );
+    ); 
   }
 
   async addArtefact(id: string, type: EFavorite) {
@@ -30,7 +30,7 @@ class FavoriteService extends RESTDataSource {
           authorization: this.context.authToken,
         },
       },
-    );
+    );  
   }
 
   async deleteArtefact(id: string, type: EFavorite) {

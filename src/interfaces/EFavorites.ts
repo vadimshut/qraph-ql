@@ -1,6 +1,6 @@
 export enum EFavorite {
-  tracks,
-  genres,
-  bands,
-  artists,
+  tracks = "tracks",
+  genres = "genres",
+  bands = "bands",
+  artists = "artists",
 }

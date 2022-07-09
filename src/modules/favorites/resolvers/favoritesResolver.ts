@@ -1,8 +1,14 @@
 import { EFavorite } from '../../../interfaces/EFavorites';
+import { IPagination } from '../../../interfaces/IPagination';
 
 const resolver = {
   Query: {
-    favourites: (_: any, __: any, { dataSources }: { dataSources: any }) => dataSources.favoriteService.getFavorites(),
+    favourites: async (_: any, { limit = 5, offset = 0 }: IPagination, { dataSources }: { dataSources: any }) => {
+        const response = await dataSources.favoriteService.getFavorites(limit, offset)
+        console.log(response);
+        
+        return response
+    },
   },
 
   Mutation: {
