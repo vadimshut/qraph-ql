@@ -4,7 +4,7 @@
   "description": "JS TS GraphQL",
   "main": "src/index.ts",
   "scripts": {
-    "start": "rimraf dist && tsc && node dist/index.js",
+    "start": "rimraf dist && tsc && node ./build/index.js",
     "start:dev": "nodemon ./src/index.ts",
     "start:warch": "nodemon -x ts-node ./src/index.ts",
     "prettier": "npx prettier --write .",
