@@ -6,5 +6,5 @@ export interface IArtistInput {
   birthPlace?: string;
   country: string;
   bandsIds?: string[];
-  instruments?: string;
+  instruments?: string[];
 }

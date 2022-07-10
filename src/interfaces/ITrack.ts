@@ -1,4 +1,4 @@
-import { IAlbum } from './Ialbum';
+import { IAlbum } from './IAlbum';
 import { IBand } from './IBand';
 import { IGenre } from './IGenge';
 
